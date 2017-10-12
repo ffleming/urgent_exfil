@@ -1,6 +1,7 @@
 import logging
 import random
 import sys
+
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 from scapy.all import TCP, IP, send
 
@@ -93,4 +94,3 @@ if __name__ == "__main__":
     opts = parser.parse_args()
     exfil = UrgentExfilClient(opts)
     exfil.exfiltrate()
-    sys.exit(0)

@@ -1,5 +1,6 @@
 import sys
 import logging
+
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 from scapy.all import sniff, IP
 
@@ -54,4 +55,3 @@ if __name__ == "__main__":
     opts = parser.parse_args()
     exfil = UrgentExfilServer(opts)
     exfil.listen()
-    sys.exit(0)

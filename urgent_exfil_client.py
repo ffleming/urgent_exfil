@@ -87,9 +87,9 @@ if __name__ == "__main__":
     parser.add_argument('-v', '--verbose', action='store_true', dest='verbose',
                         help='Enable verbose output')
     parser.add_argument('--version', action='version',
-                        version=('%(prog)s ' + UrgExfil.version()),
+                        version=('%(prog)s ' + UrgentExfilClient.version()),
                         help="Show version information")
     opts = parser.parse_args()
-    exfil = UrgExfil(opts)
+    exfil = UrgentExfilClient(opts)
     exfil.exfiltrate()
     sys.exit(0)

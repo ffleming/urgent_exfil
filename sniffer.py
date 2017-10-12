@@ -1,5 +1,5 @@
 import sys
-from scapy import sniff
+from scapy.all import sniff
 
 
 class UrgExfilSniffer:

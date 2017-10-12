@@ -1,5 +1,5 @@
 import sys
-from scapy.all import sniff
+from scapy.all import sniff, IP
 
 
 class UrgentExfilServer:
@@ -8,7 +8,7 @@ class UrgentExfilServer:
 
     def __init__(self, opts):
         filemode = 'ab' if opts.append else 'wb'
-        self.outfile = open(opts.outfile, filemode)
+        self.outfile = open(opts.outfile, filemode, 0)
         self.port = opts.port
         self.verbose = opts.verbose
 
@@ -16,10 +16,14 @@ class UrgentExfilServer:
         self.outfile.close()
 
     def process(self, packet):
-        print(self.bytes_for(packet.urgptr))
+        data = self.bytes_for(packet.urgptr)
+        if self.verbose:
+            print("From " + packet[IP].src + ": " +
+                  repr(data.decode('us-ascii')))
+        self.outfile.write(data)
 
     def listen(self):
-        fil = "tcp port 31337"  # + str(self.port)
+        fil = "tcp port " + str(self.port)
         sniff(filter=fil, prn=self.process)
 
     def bytes_for(self, integer):

@@ -1,4 +1,6 @@
 import sys
+import logging
+logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 from scapy.all import sniff, IP
 
 
@@ -38,10 +40,10 @@ if __name__ == "__main__":
                add_help=True
              )
     parser.add_argument('-p', '--port', required=True, action='store',
-                        help='Destination port', type=int)
+                        help='Port to watch for URG messages', type=int)
     parser.add_argument('-f', '--outfile', action='store',
                         help='Location to save received data',
-                        default="woofer")
+                        required=True)
     parser.add_argument('-v', '--verbose', action='store_true',
                         dest='verbose', help='Enable verbose output')
     parser.add_argument('--truncate', action='store_false', dest='append',

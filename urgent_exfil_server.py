@@ -2,7 +2,7 @@ import sys
 from scapy.all import sniff
 
 
-class UrgExfilSniffer:
+class UrgentExfilServer:
     def version():
         return '0.0.1'
 
@@ -40,9 +40,9 @@ if __name__ == "__main__":
     parser.add_argument('--truncate', action='store_false', dest='append',
                         help='Truncate outfile', default=True)
     parser.add_argument('--version', action='version',
-                        version=('%(prog)s ' + UrgExfilSniffer.version()),
+                        version=('%(prog)s ' + UrgentExfilServer.version()),
                         help="Show version information")
     opts = parser.parse_args()
-    exfil = UrgExfilSniffer(opts)
+    exfil = UrgentExfilServer(opts)
     exfil.listen()
     sys.exit(0)

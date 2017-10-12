@@ -3,7 +3,7 @@ import sys
 from scapy.all import TCP, IP, send
 
 
-class UrgExfil:
+class UrgentExfilClient:
     def version():
         return '0.0.1'
 

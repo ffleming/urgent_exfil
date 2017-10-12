@@ -12,6 +12,9 @@ class UrgentExfilServer:
         self.port = opts.port
         self.verbose = opts.verbose
 
+    def __exit__(self, exc_type, exc_value, traceback):
+        self.outfile.close()
+
     def process(self, packet):
         print(self.bytes_for(packet.urgptr))
 

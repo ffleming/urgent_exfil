@@ -25,7 +25,8 @@ class UrgentExfilServer:
         self.outfile.write(data)
 
     def listen(self):
-        fil = "tcp port " + str(self.port)
+        fil = ("tcp port " + str(self.port) +
+               ' and (tcp[tcpflags] & tcp-urg) != 0')
         sniff(filter=fil, prn=self.process)
 
     def bytes_for(self, integer):
